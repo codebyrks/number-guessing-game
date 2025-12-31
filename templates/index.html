@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1v1 Guessing Game</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="container">
+        <header>
+            <h1>🎮 1 vs 1 Guessing Game</h1>
+            <p>Challenge your friend!</p>
+        </header>
+
+        {% if session.message %}
+        <div class="alert {{ session.msg_type }}">
+            {{ session.message }}
+        </div>
+        {% endif %}
+
+        {% if session.game_phase == 'setup' %}
+        <div class="card setup-card">
+            <h2>👤 Player 1</h2>
+            <p>Hide the screen and set the secret number.</p>
+            <form method="POST">
+                <input type="hidden" name="action" value="set_number">
+
+                <div class="input-group">
+                    <input type="password" name="secret_number" placeholder="Secret Number (1-100)" required
+                        autocomplete="off">
+                </div>
+
+                <div class="input-group">
+                    <label>Difficulty (Attempts):</label>
+                    <select name="difficulty">
+                        <option value="5">Hard (5)</option>
+                        <option value="7" selected>Normal (7)</option>
+                        <option value="10">Easy (10)</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn-primary">🔒 Lock & Start</button>
+            </form>
+        </div>
+
+        {% elif session.game_phase == 'playing' %}
+        <div class="game-stats">
+            <div class="stat-box">Attempts: <strong>{{ session.attempts }}</strong></div>
+            <div class="stat-box">Remaining: <strong>{{ session.max_attempts - session.attempts }}</strong></div>
+        </div>
+
+        <div class="card game-card">
+            <h2>👤 Player 2</h2>
+            <form method="POST">
+                <input type="hidden" name="action" value="guess">
+                <input type="number" name="guess" placeholder="Enter your guess..." required autofocus>
+                <button type="submit" class="btn-success">🚀 Submit Guess</button>
+            </form>
+        </div>
+
+        {% if session.history %}
+        <div class="history-log">
+            <h3>History</h3>
+            <ul>
+                {% for item in session.history %}
+                <li>
+                    <span class="num">{{ item.guess }}</span>
+                    <span class="hint">{{ item.hint }}</span>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+
+        {% else %}
+        <div class="card result-card">
+            {% if session.game_phase == 'won' %}
+            <div class="trophy">🏆</div>
+            <h2>You Won!</h2>
+            {% else %}
+            <div class="skull">💀</div>
+            <h2>Game Over</h2>
+            {% endif %}
+
+            <form method="POST">
+                <button type="submit" name="action" value="reset" class="btn-reset">🔄 Play Again</button>
+            </form>
+        </div>
+        {% endif %}
+    </div>
+
+</body>
+
+</html>
