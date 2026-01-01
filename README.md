@@ -4,52 +4,81 @@
 ![Flask](https://img.shields.io/badge/Flask-2.x-lightgrey?style=flat-square&logo=flask)
 ![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)
 
-A web-based **Two-Player Number Guessing Game** built with Python and Flask. This project uses server-side sessions to manage game state, allowing for a seamless flow without needing a database.
+A web-based **Two-Player Number Guessing Game** built using **Python and Flask**.  
+The application uses **Flask sessions** to manage game state without requiring a database.
 
-## 📖 About The Project
+---
 
-This application gamifies the classic "High/Low" guessing game. It is designed for two players sharing a screen or taking turns:
-1.  **Player 1 (The Host):** Sets a secret number and defines the difficulty (maximum attempts).
-2.  **Player 2 (The Guesser):** Tries to find the number using logic and hints provided by the game.
+## 📖 About the Project
 
-### ✨ Key Features
-* **Session Management:** Uses Flask sessions to securely store the secret number and game history.
-* **Dynamic Feedback:** Provides real-time "Too High" or "Too Low" hints.
-* **Difficulty Settings:** Custom maximum attempt limits set by the user.
-* **Game History:** specific tracking of all guesses made during the session.
-* **Win/Loss States:** Automatic detection of game-over conditions.
+This project is a web version of the classic **High–Low Number Guessing Game**, designed for two players:
+
+1. **Player 1 (Host)**
+   - Sets a secret number
+   - Defines the maximum number of attempts
+
+2. **Player 2 (Guesser)**
+   - Tries to guess the number
+   - Receives hints: **Too High** or **Too Low**
+
+---
+
+## ✨ Key Features
+
+- 🔐 Session-based state management
+- 🔄 Real-time feedback for guesses
+- 🎚️ Custom difficulty (attempt limits)
+- 📜 Guess history tracking
+- 🏁 Automatic win and loss detection
 
 ---
 
 ## 🛠️ Technologies Used
 
-* **Backend:** [Flask](https://flask.palletsprojects.com/) (Python Microframework)
-* **Frontend:** HTML5, CSS3, Jinja2 Templating
+- **Backend:** Python, Flask
+- **Frontend:** HTML5, CSS3
+- **Templating Engine:** Jinja2
+
 ---
 
 ## 🚀 Getting Started
 
-Follow these instructions to get a copy of the project up and running on your local machine.
+Follow the steps below to run the project locally.
 
-### Prerequisites
-* Python 3.x installed
+### ✅ Prerequisites
 
-### Installation
+- Python 3.x installed
+- Git installed
 
-1.  **Clone the repository**
+---
+
+### 📦 Installation & Setup
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/codebyrks/Number_Guessing_Game.git
+
+2.  **Navigate to the project folder**
     ```bash
-    git clone [https://github.com/codebyrks/Number_Guessing_Game.git]
+    cd Number_Game
+    ```
+3.  **(Optional) Activate virtual environment**
+    ```bash
+    .venv\Scripts\activate      # Windows
+    source .venv/bin/activate  # Linux / Mac
+    ```
+4.  **Install dependencies**
+    ```bash
+    pip install -r requirements.txt
     ```
 
-2.  **Install dependencies**
-    ```bash
-    pip install Flask
-    ```
-    *(Or if you have a requirements.txt file: `pip install -r requirements.txt`)*
-
-3.  **Run the application**
+5.  **Run the application**
     ```bash
     python app.py
+    ```
+5.  **Open in browser**
+    ```bash
+    http://127.0.0.1:5000
     ```
 ---
 
@@ -63,18 +92,21 @@ Follow these instructions to get a copy of the project up and running on your lo
     * Hand the device to Player 2 (or switch roles).
     * Enter a guess.
     * Review the hint (🔼 Too Low / 🔽 Too High).
-    * Keep guessing until you win or run out of attempts!
+    * Game ends when:
+        * 🎉 Number is guessed correctly, or
+        * ❌ Attempts are exhausted
 
 ---
 
 ## 📂 Project Structure
 ```
-Number_Guessing_Game/
-├── static/
-│   └── style.css
-├── templates/
-│   └── index.html
-├── app.py
-└── README.md
+Number_Game/
+├── .venv/              # Virtual environment
+├── static/             # CSS and static assets
+├── templates/          # HTML templates
+├── .gitignore          # Git ignore rules
+├── app.py              # Main Flask application
+├── requirements.txt    # Project dependencies
+└── README.md           # Project documentation
 
 ```
