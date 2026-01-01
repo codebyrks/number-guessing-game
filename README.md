@@ -2,7 +2,6 @@
 
 ![Python](https://img.shields.io/badge/Python-3.x-blue?style=flat-square&logo=python)
 ![Flask](https://img.shields.io/badge/Flask-2.x-lightgrey?style=flat-square&logo=flask)
-![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)
 
 A web-based **Two-Player Number Guessing Game** built using **Python and Flask**.  
 The application uses **Flask sessions** to manage game state without requiring a database.
